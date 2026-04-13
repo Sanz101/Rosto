@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rossto – Trust Your Dreams | Sri Lanka Tours</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF1E2;
+    --teal-dark: #1D758B;
+    --teal-mid: #3D948C;
+    --teal-light: #5BB8C4;
+    --white: #ffffff;
+    --text-dark: #1a2e35;
+    --glass-bg: rgba(255,241,226,0.18);
+    --glass-border: rgba(29,117,139,0.18);
+    --glass-shadow: 0 8px 48px rgba(29,117,139,0.13), 0 2px 16px rgba(61,148,140,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── LIQUID GLASS UTILITY ─── */
+  .glass {
+    background: rgba(255,241,226,0.28);
+    backdrop-filter: blur(22px) saturate(1.6);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    border: 1px solid rgba(29,117,139,0.18);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-teal {
+    background: rgba(29,117,139,0.15);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(29,117,139,0.25);
+    box-shadow: 0 8px 40px rgba(29,117,139,0.18);
+  }
+
+  /* ─── FLOATING NAV ─── */
+  nav {
+    justify-content: center;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 10px 20px;
+    border-radius: 60px;
+    background: rgba(255,241,226,0.55);
+    backdrop-filter: blur(30px) saturate(2);
+    -webkit-backdrop-filter: blur(30px) saturate(2);
+    border: 1px solid rgba(29,117,139,0.22);
+    box-shadow: 0 4px 32px rgba(29,117,139,0.14), 0 1px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: nowrap;
+  }
+
+  nav.scrolled {
+    background: rgba(255,241,226,0.82);
+    box-shadow: 0 8px 48px rgba(29,117,139,0.22), 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--teal-dark);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 7px 14px;
+    border-radius: 40px;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .nav-links a:hover {
+    background: rgba(29,117,139,0.12);
+    color: var(--teal-dark);
+    transform: translateY(-1px);
+  }
+
+  .nav-cta {
+    margin-left: 10px;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid)) !important;
+    color: white !important;
+    padding: 8px 18px !important;
+    border-radius: 40px !important;
+    box-shadow: 0 4px 16px rgba(29,117,139,0.35);
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px) scale(1.04) !important;
+    box-shadow: 0 8px 28px rgba(29,117,139,0.45) !important;
+    background: rgba(29,117,139,0) !important;
+  }
+
+  /* hamburger */
+  .hamburger {
+    position: absolute;
+    right: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: 12px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--teal-dark);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, #FFF1E2 0%, #e8f5f5 40%, #d4ecec 100%);
+  }
+
+  .hero-bg-blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: blobFloat 8s ease-in-out infinite;
+  }
+
+  .blob-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(29,117,139,0.4), transparent 70%);
+    top: -100px; right: -100px;
+    animation-delay: 0s;
+  }
+
+  .blob-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(61,148,140,0.35), transparent 70%);
+    bottom: -50px; left: -80px;
+    animation-delay: -3s;
+  }
+
+  .blob-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(91,184,196,0.3), transparent 70%);
+    top: 40%; left: 30%;
+    animation-delay: -5s;
+  }
+
+  @keyframes blobFloat {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(30px,-30px) scale(1.05); }
+    66% { transform: translate(-20px,20px) scale(0.95); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  padding: 10px 24px 80px;
+    max-width: 900px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    font-weight: 500;
+    margin-bottom: 28px;
+    animation: fadeSlideUp 0.8s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-mid);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero-logo-large {
+    
+    width: min(820px, 85vw);
+    margin: 0 auto 28px;
+    display: block;
+    filter: drop-shadow(0 12px 40px rgba(29,117,139,0.25));
+    animation: fadeSlideUp 0.9s 0.1s ease both;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 300;
+    color: var(--teal-dark);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    animation: fadeSlideUp 1s 0.2s ease both;
+  }
+
+  .hero-tagline em {
+    font-style: italic;
+    color: var(--teal-mid);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(29,117,139,0.75);
+    font-weight: 300;
+    margin-bottom: 44px;
+    line-height: 1.7;
+    animation: fadeSlideUp 1s 0.35s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeSlideUp 1s 0.5s ease both;
+  }
+
+  .btn-primary {
+    padding: 15px 36px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+    color: white;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    box-shadow: 0 8px 32px rgba(29,117,139,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 50px;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 16px 48px rgba(29,117,139,0.5);
+  }
+
+  .btn-primary:hover::after { opacity: 1; }
+
+  .btn-secondary {
+    padding: 15px 36px;
+    border-radius: 50px;
+    background: transparent;
+    color: var(--teal-dark);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border: 1.5px solid rgba(29,117,139,0.4);
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(29,117,139,0.08);
+    border-color: var(--teal-dark);
+    transform: translateY(-3px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(29,117,139,0.55);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    animation: fadeSlideUp 1s 0.8s ease both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--teal-mid), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.6); opacity: 0.5; }
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTIONS COMMON ─── */
+  section {
+    padding: 100px 24px;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--teal-dark);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: rgba(29,117,139,0.68);
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 560px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ─── WHY ROSSTO ─── */
+  #why {
+    background: linear-gradient(180deg, var(--cream) 0%, #e4f2f2 100%);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .why-text .section-sub { max-width: 100%; }
+
+  .why-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .feature-card {
+    padding: 22px 20px;
+    border-radius: 20px;
+    background: rgba(255,241,226,0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(29,117,139,0.14);
+    box-shadow: 0 4px 20px rgba(29,117,139,0.07);
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    cursor: default;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(29,117,139,0.16);
+    border-color: rgba(29,117,139,0.28);
+    background: rgba(255,241,226,0.75);
+  }
+
+  .feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .feature-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .feature-card p {
+    font-size: 0.82rem;
+    color: rgba(29,117,139,0.68);
+    line-height: 1.6;
+  }
+
+  .why-visual {
+    position: relative;
+  }
+
+  .why-map-frame {
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(29,117,139,0.2);
+    aspect-ratio: 4/5;
+    position: relative;
+  }
+
+  .why-map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .map-overlay-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    padding: 14px 20px;
+    border-radius: 16px;
+    background: rgba(255,241,226,0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(29,117,139,0.2);
+    box-shadow: 0 8px 32px rgba(29,117,139,0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .map-badge-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--teal-mid);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 4px rgba(61,148,140,0.2);
+    animation: pulse 2.5s ease infinite;
+  }
+
+  .map-overlay-badge p {
+    font-size: 0.82rem;
+    color: var(--teal-dark);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .map-overlay-badge strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  /* ─── DESTINATIONS ─── */
+  #destinations {
+    background: var(--cream);
+  }
+
+  .destinations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .dest-card {
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    group: true;
+    transition: all 0.45s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow: 0 8px 32px rgba(29,117,139,0.1);
+  }
+
+  .dest-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 24px 64px rgba(29,117,139,0.24);
+  }
+
+  .dest-card.featured {
+    grid-row: span 2;
+  }
+
+  .dest-img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .dest-card.featured .dest-img { min-height: 100%; }
+
+  .dest-card:hover .dest-img {
+    transform: scale(1.07);
+  }
+
+  .dest-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(29,117,139,0.85) 0%, rgba(29,117,139,0.15) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    transition: all 0.4s ease;
+  }
+
+  .dest-card:hover .dest-overlay {
+    background: linear-gradient(to top, rgba(29,117,139,0.92) 0%, rgba(29,117,139,0.3) 60%, transparent 100%);
+  }
+
+  .dest-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,241,226,0.8);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .dest-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .dest-card.featured .dest-name { font-size: 2rem; }
+
+  .dest-note {
+    font-size: 0.8rem;
+    color: rgba(255,241,226,0.78);
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.4s ease 0.05s;
+    margin-bottom: 12px;
+  }
+
+  .dest-card:hover .dest-note {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dest-map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(255,241,226,0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,241,226,0.35);
+    color: white;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.35s ease 0.1s;
+    width: fit-content;
+  }
+
+  .dest-card:hover .dest-map-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dest-map-btn:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  /* Destination placeholder backgrounds */
+  .dest-kandy { background: linear-gradient(160deg, #1a6b7a 0%, #2d9090 100%); }
+  .dest-ella { background: linear-gradient(160deg, #1f7a5a 0%, #3d9470 100%); }
+  .dest-sigiriya { background: linear-gradient(160deg, #7a4a1a 0%, #a06030 100%); }
+  .dest-galle { background: linear-gradient(160deg, #1a5a7a 0%, #2d7a9a 100%); }
+  .dest-nuwara { background: linear-gradient(160deg, #2a4a6a 0%, #3a6a8a 100%); }
+  .dest-beach { background: linear-gradient(160deg, #1a7a6a 0%, #2d9a8a 100%); }
+
+  .dest-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
+
+  .dest-card.featured .dest-placeholder { min-height: 480px; }
+
+  /* ─── EXPERIENCE ─── */
+  #experience {
+    background: linear-gradient(180deg, #e4f2f2 0%, var(--cream) 100%);
+  }
+
+  .experience-content {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .exp-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-step {
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(29,117,139,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .exp-step:last-child { border-bottom: none; }
+
+  .exp-step:hover .step-content h4 { color: var(--teal-mid); }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: rgba(29,117,139,0.2);
+    min-width: 48px;
+    line-height: 1;
+    transition: all 0.3s ease;
+  }
+
+  .exp-step:hover .step-num { color: var(--teal-mid); }
+
+  .step-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 6px;
+    transition: color 0.3s;
+  }
+
+  .step-content p {
+    font-size: 0.85rem;
+    color: rgba(29,117,139,0.65);
+    line-height: 1.65;
+  }
+
+  /* Services card grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .service-card {
+    padding: 28px 24px;
+    border-radius: 22px;
+    background: rgba(255,241,226,0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(29,117,139,0.12);
+    box-shadow: 0 4px 24px rgba(29,117,139,0.07);
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(29,117,139,0.18);
+    border-color: rgba(29,117,139,0.25);
+  }
+
+  .service-card.highlight {
+    background: linear-gradient(135deg, rgba(29,117,139,0.12), rgba(61,148,140,0.08));
+    border-color: rgba(29,117,139,0.25);
+    grid-column: span 2;
+  }
+
+  .service-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+
+  .service-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .service-card p {
+    font-size: 0.82rem;
+    color: rgba(29,117,139,0.65);
+    line-height: 1.6;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials {
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .reviews-header .section-sub {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .reviews-track-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reviews-track-wrap::before,
+  .reviews-track-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .reviews-track-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, var(--cream), transparent);
+  }
+
+  .reviews-track-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, var(--cream), transparent);
+  }
+
+  .reviews-track {
+    display: flex;
+    gap: 24px;
+    animation: scrollTrack 35s linear infinite;
+    width: max-content;
+  }
+
+  .reviews-track:hover { animation-play-state: paused; }
+
+  @keyframes scrollTrack {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .review-card {
+    width: 320px;
+    flex-shrink: 0;
+    padding: 28px 26px;
+    border-radius: 22px;
+    background: rgba(255,241,226,0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(29,117,139,0.14);
+    box-shadow: 0 4px 24px rgba(29,117,139,0.08);
+    transition: all 0.35s ease;
+  }
+
+  .reviews-track:hover .review-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(29,117,139,0.18);
+    border-color: rgba(29,117,139,0.25);
+  }
+
+  .review-stars {
+    color: var(--teal-mid);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--teal-dark);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .review-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .review-name {
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--teal-dark);
+    display: block;
+  }
+
+  .review-origin {
+    font-size: 0.75rem;
+    color: rgba(29,117,139,0.6);
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: linear-gradient(160deg, #e4f2f2 0%, var(--cream) 100%);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-card {
+    padding: 22px 24px;
+    border-radius: 20px;
+    background: rgba(255,241,226,0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(29,117,139,0.14);
+    box-shadow: 0 4px 20px rgba(29,117,139,0.07);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .contact-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 12px 40px rgba(29,117,139,0.15);
+    border-color: rgba(29,117,139,0.25);
+  }
+
+  .contact-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(29,117,139,0.3);
+  }
+
+  .contact-details strong {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 4px;
+  }
+
+  .contact-details p, .contact-details a {
+    font-size: 0.92rem;
+    color: var(--teal-dark);
+    text-decoration: none;
+    line-height: 1.55;
+  }
+
+  .contact-details a:hover { color: var(--teal-mid); }
+
+  .owner-card {
+    padding: 28px 24px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(29,117,139,0.1), rgba(61,148,140,0.06));
+    border: 1px solid rgba(29,117,139,0.2);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .owner-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(29,117,139,0.3);
+  }
+
+  .owner-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .owner-info p {
+    font-size: 0.82rem;
+    color: rgba(29,117,139,0.65);
+  }
+
+  /* Contact form */
+  .contact-form {
+    padding: 36px 32px;
+    border-radius: 28px;
+    background: rgba(255,241,226,0.45);
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    border: 1px solid rgba(29,117,139,0.16);
+    box-shadow: 0 12px 60px rgba(29,117,139,0.12), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 7px;
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(29,117,139,0.16);
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.3s ease;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--teal-mid);
+    background: rgba(255,255,255,0.65);
+    box-shadow: 0 0 0 4px rgba(61,148,140,0.1);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 15px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+    color: white;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 8px 28px rgba(29,117,139,0.38);
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(29,117,139,0.5);
+  }
+
+  .form-submit:active {
+    transform: translateY(-1px);
+  }
+
+  /* ─── MAP SECTION ─── */
+  #map-section {
+    padding: 0;
+    height: 480px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #map-section iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    filter: saturate(0.85) hue-rotate(-5deg);
+  }
+
+  .map-section-overlay {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 28px;
+    border-radius: 50px;
+    background: rgba(255,241,226,0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(29,117,139,0.2);
+    box-shadow: 0 8px 32px rgba(29,117,139,0.15);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .map-section-overlay span {
+    font-size: 0.8rem;
+    color: var(--teal-dark);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: linear-gradient(135deg, #0f3d4a, #1D758B);
+    color: rgba(255,241,226,0.75);
+    padding: 60px 24px 32px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    height: 60px;
+    margin: 0 auto 20px;
+    display: block;
+    filter: brightness(10) saturate(0);
+    opacity: 0.9;
+  }
+
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: rgba(255,241,226,0.9);
+    margin-bottom: 28px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .footer-links a {
+    color: rgba(255,241,226,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: rgba(255,241,226,1); }
+
+  .footer-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(255,241,226,0.2);
+    margin: 0 auto 24px;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(255,241,226,0.4);
+    line-height: 1.7;
+  }
+
+  .footer-copy a {
+    color: rgba(255,241,226,0.55);
+    text-decoration: none;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── MOBILE NAV ─── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(255,241,226,0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    transition: all 0.4s ease;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--teal-dark);
+    text-decoration: none;
+    font-weight: 300;
+    transition: all 0.25s ease;
+  }
+
+  .mobile-menu a:hover { color: var(--teal-mid); transform: translateX(8px); }
+
+  .mobile-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--teal-dark);
+    cursor: pointer;
+    width: 44px; height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+  }
+
+  .mobile-close:hover { background: rgba(29,117,139,0.1); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .why-grid, .experience-content, .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .dest-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .dest-card.featured { grid-row: auto; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-cta { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 70px 18px; }
+    .dest-grid { grid-template-columns: 1fr; }
+    .why-features { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card.highlight { grid-column: span 1; }
+    .contact-form { padding: 24px 20px; }
+    nav { padding: 8px 14px; top: 12px; }
+    .nav-logo { height: 30px; }
+    #map-section { height: 320px; }
+    .map-section-overlay { padding: 10px 18px; }
+    .map-section-overlay span { font-size: 0.72rem; }
+  }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 900;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    text-decoration: none;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.15) translateY(-4px);
+    box-shadow: 0 16px 48px rgba(37,211,102,0.55);
+  }
+
+  .whatsapp-float svg {
+    width: 28px; height: 28px;
+    fill: white;
+  }
+
+  /* Stats strip */
+  .stats-strip {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--teal-dark);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(29,117,139,0.6);
+    margin-top: 4px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── FLOATING NAV ─── -->
+<nav id="navbar">
+  
+  <ul class="nav-links">
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#experience">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/94772004795" class="nav-cta" target="_blank">📞 Book Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#why" onclick="toggleMenu()">Why Us</a>
+  <a href="#destinations" onclick="toggleMenu()">Destinations</a>
+  <a href="#experience" onclick="toggleMenu()">Services</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="https://wa.me/94772004795" target="_blank" style="color:#3D948C;font-size:1.4rem;">📞 Book on WhatsApp</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-content">
+    
+    <img src="Logo.png" alt="Rossto" class="hero-logo-large">
+    <h1 class="hero-tagline">
+      Your <em>Dream Journey</em> Through<br>the Pearl of the Indian Ocean
+    </h1>
+    <p class="hero-sub">
+      Airport pickups · Island-wide tours · Kandy & hill country specialists<br>
+      Personalised, private & unforgettable experiences since day one.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Plan My Trip</a>
+      <a href="#destinations" class="btn-secondary">Explore Sri Lanka</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Discover</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── WHY ROSSTO ─── -->
+<section id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Choose Rossto</span>
+        <h2 class="section-title">A local guide you can<br><em style="font-style:italic;color:var(--teal-mid)">truly trust</em></h2>
+        <p class="section-sub">Based in Peradeniya, at the heart of Sri Lanka's cultural triangle, Ranjan and the Rossto team offer an experience no travel agency can replicate — genuine local warmth, insider knowledge, and personalised care from the moment you land.</p>
+        <div class="why-features">
+          <div class="feature-card reveal reveal-delay-1">
+            <span class="feature-icon">✈️</span>
+            <h4>Airport Transfers</h4>
+            <p>Seamless pickups from CMB & any Sri Lankan airport, any hour.</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-2">
+            <span class="feature-icon">🏨</span>
+            <h4>Curated Stays</h4>
+            <p>Handpicked accommodation from boutique guesthouses to luxury resorts.</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-3">
+            <span class="feature-icon">🗺️</span>
+            <h4>Personal Guide</h4>
+            <p>Ranjan guides you in person — sharing stories, culture, and hidden gems.</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-4">
+            <span class="feature-icon">🌿</span>
+            <h4>Island-Wide Coverage</h4>
+            <p>From the hill country to the south coast — everywhere Sri Lanka breathes.</p>
+          </div>
+        </div>
+        <div class="stats-strip reveal">
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Happy Travellers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Destinations Covered</span>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual reveal reveal-delay-2">
+        <div class="why-map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.55856003955!2d80.5915!3d7.2906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae366266498acd3%3A0x411a3818a1e03c37!2sKandy%2C%20Sri%20Lanka!5e0!3m2!1sen!2s!4v1700000000000"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div class="map-overlay-badge glass">
+          <div class="map-badge-dot"></div>
+          <p><strong>No. 114, Kurunduwatta Rd, Peradeniya</strong>Kandy District · Central Sri Lanka</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DESTINATIONS ─── -->
+<section id="destinations">
+  <div class="container">
+    <div class="destinations-header">
+      <div>
+        <span class="section-label reveal">Must-Visit Destinations</span>
+        <h2 class="section-title reveal">Explore the<br><em style="font-style:italic;color:var(--teal-mid)">Wonders of Sri Lanka</em></h2>
+      </div>
+      <p class="section-sub reveal" style="max-width:280px;text-align:right;">Every destination is a story — let Ranjan help you live it.</p>
+    </div>
+
+    <div class="dest-grid">
+      <!-- Featured: Kandy -->
+      <div class="dest-card featured reveal" onclick="openMap('Kandy+Sri+Lanka')">
+        <div class="dest-kandy dest-placeholder">🏛️</div>
+        <div class="dest-overlay">
+          <span class="dest-tag">⭐ Rossto Specialty</span>
+          <div class="dest-name">Kandy & The Hill Country</div>
+          <div class="dest-note">The cultural capital of Sri Lanka — home to the sacred Temple of the Tooth, the Royal Botanical Gardens of Peradeniya, misty mountains, and the world-famous Kandy Esala Perahera. Rossto's home ground — nobody knows it better.</div>
+          <a href="https://www.google.com/maps/search/Kandy+Sri+Lanka" target="_blank" class="dest-map-btn" onclick="e=>e.stopPropagation()">📍 View on Maps</a>
+        </div>
+      </div>
+
+      <!-- Ella -->
+      <div class="dest-card reveal reveal-delay-1" onclick="openMap('Ella+Sri+Lanka')">
+        <div class="dest-ella dest-placeholder">🌿</div>
+        <div class="dest-overlay">
+          <span class="dest-tag">Nature & Scenery</span>
+          <div class="dest-name">Ella & Nine Arches</div>
+          <div class="dest-note">The iconic Nine Arch Bridge, Little Adam's Peak sunrise hikes, and cascading waterfalls through lush tea estates.</div>
+          <a href="https://www.google.com/maps/search/Ella+Sri+Lanka" target="_blank" class="dest-map-btn">📍 View on Maps</a>
+        </div>
+      </div>
+
+      <!-- Sigiriya -->
+      <div class="dest-card reveal reveal-delay-2" onclick="openMap('Sigiriya+Sri+Lanka')">
+        <div class="dest-sigiriya dest-placeholder">🗿</div>
+        <div class="dest-overlay">
+          <span class="dest-tag">Ancient Wonder</span>
+          <div class="dest-name">Sigiriya Rock Fortress</div>
+          <div class="dest-note">A UNESCO World Heritage site — climb the 5th-century citadel rising 200m above the jungle plain. Breathtaking and unforgettable.</div>
+          <a href="https://www.google.com/maps/search/Sigiriya+Rock+Fortress+Sri+Lanka" target="_blank" class="dest-map-btn">📍 View on Maps</a>
+        </div>
+      </div>
+
+      <!-- Galle -->
+      <div class="dest-card reveal reveal-delay-1" onclick="openMap('Galle+Fort+Sri+Lanka')">
+        <div class="dest-galle dest-placeholder">🏰</div>
+        <div class="dest-overlay">
+          <span class="dest-tag">Colonial History</span>
+          <div class="dest-name">Galle Fort</div>
+          <div class="dest-note">Walk Dutch colonial streets within a UNESCO fort on the southern coast — boutiques, cafés, and sunsets over the Indian Ocean.</div>
+          <a href="https://www.google.com/maps/search/Galle+Fort+Sri+Lanka" target="_blank" class="dest-map-btn">📍 View on Maps</a>
+        </div>
+      </div>
+
+      <!-- Nuwara Eliya -->
+      <div class="dest-card reveal reveal-delay-2" onclick="openMap('Nuwara+Eliya+Sri+Lanka')">
+        <div class="dest-nuwara dest-placeholder">☕</div>
+        <div class="dest-overlay">
+          <span class="dest-tag">Tea Country</span>
+          <div class="dest-name">Nuwara Eliya</div>
+          <div class="dest-note">"Little England" — rolling tea estates, cool mountain air, and the train journey from Kandy that is ranked among the world's most scenic.</div>
+          <a href="https://www.google.com/maps/search/Nuwara+Eliya+Sri+Lanka" target="_blank" class="dest-map-btn">📍 View on Maps</a>
+        </div>
+      </div>
+
+      <!-- Mirissa -->
+      <div class="dest-card reveal reveal-delay-3" onclick="openMap('Mirissa+Beach+Sri+Lanka')">
+        <div class="dest-beach dest-placeholder">🐳</div>
+        <div class="dest-overlay">
+          <span class="dest-tag">Ocean & Wildlife</span>
+          <div class="dest-name">Mirissa & Whale Watching</div>
+          <div class="dest-note">World's best blue whale watching spot, golden beaches, and fresh seafood on the southern coast. A perfect finish to any island tour.</div>
+          <a href="https://www.google.com/maps/search/Mirissa+Beach+Sri+Lanka" target="_blank" class="dest-map-btn">📍 View on Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE / SERVICES ─── -->
+<section id="experience">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:60px;">
+      <span class="section-label reveal">How It Works</span>
+      <h2 class="section-title reveal">Simple, personal,<br><em style="font-style:italic;color:var(--teal-mid)">seamlessly arranged</em></h2>
+    </div>
+    <div class="experience-content">
+      <div class="exp-steps reveal">
+        <div class="exp-step">
+          <span class="step-num">01</span>
+          <div class="step-content">
+            <h4>Reach Out to Ranjan</h4>
+            <p>Call, WhatsApp, or email — tell us your dates, group size, and what kind of experience you're dreaming of.</p>
+          </div>
+        </div>
+        <div class="exp-step">
+          <span class="step-num">02</span>
+          <div class="step-content">
+            <h4>We Craft Your Itinerary</h4>
+            <p>A personalised plan built around your interests — from cultural landmarks to hidden waterfalls to beach sunsets.</p>
+          </div>
+        </div>
+        <div class="exp-step">
+          <span class="step-num">03</span>
+          <div class="step-content">
+            <h4>Airport Arrival, Zero Stress</h4>
+            <p>We meet you at the terminal — smiling, sign in hand. Your Sri Lanka adventure starts right there.</p>
+          </div>
+        </div>
+        <div class="exp-step">
+          <span class="step-num">04</span>
+          <div class="step-content">
+            <h4>Guided All the Way</h4>
+            <p>Ranjan travels with you, sharing local knowledge, arranging every meal and stay, keeping it smooth and magical.</p>
+          </div>
+        </div>
+        <div class="exp-step">
+          <span class="step-num">05</span>
+          <div class="step-content">
+            <h4>A Departure with Memories</h4>
+            <p>We ensure you leave with a full heart — and we're always here for your next visit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-grid reveal reveal-delay-2">
+        <div class="service-card">
+          <span class="service-icon">🚗</span>
+          <h4>Private Transfers</h4>
+          <p>Comfortable AC vehicles for airport pickups, drop-offs, and all inter-city travel across Sri Lanka.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🏡</span>
+          <h4>Accommodation</h4>
+          <p>Handpicked guesthouses, boutique hotels, and eco-lodges to suit every budget and taste.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🎒</span>
+          <h4>Day Tours</h4>
+          <p>Guided day trips to Sigiriya, Pinnawala, Dambulla, Minneriya, Adam's Peak, and beyond.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🍛</span>
+          <h4>Culinary Experiences</h4>
+          <p>Authentic Sri Lankan meals, cooking classes, and spice garden visits — taste the island.</p>
+        </div>
+        <div class="service-card highlight">
+          <span class="service-icon">🌄</span>
+          <h4>Complete Island Packages</h4>
+          <p>Multi-day curated packages covering the cultural triangle, tea country, wildlife parks, and coastal paradise — everything included, nothing left to chance. Customised fully for your group, timeline, and interests.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="reviews-header">
+      <span class="section-label reveal">Traveller Stories</span>
+      <h2 class="section-title reveal">What our guests say</h2>
+      <p class="section-sub reveal">Real words from real travellers who trusted Rossto with their Sri Lanka dream.</p>
+    </div>
+  </div>
+  <div class="reviews-track-wrap">
+    <div class="reviews-track" id="reviewsTrack">
+      <!-- Reviews set 1 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ranjan picked us up from the airport and was the warmest, most knowledgeable guide we could have asked for. He made Sri Lanka feel like home."</p>
+        <div class="review-author">
+          <div class="review-avatar">SM</div>
+          <div>
+            <span class="review-name">Sophie M.</span>
+            <span class="review-origin">🇬🇧 United Kingdom</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The Kandy to Ella train, Sigiriya at sunrise, whale watching in Mirissa — all perfectly arranged. Every detail was taken care of. Incredible value."</p>
+        <div class="review-author">
+          <div class="review-avatar">TD</div>
+          <div>
+            <span class="review-name">Thomas D.</span>
+            <span class="review-origin">🇩🇪 Germany</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"We had two weeks and Ranjan made every single day magical. The guesthouses he chose were perfect — clean, authentic, and with the most delicious breakfasts."</p>
+        <div class="review-author">
+          <div class="review-avatar">AL</div>
+          <div>
+            <span class="review-name">Amélie L.</span>
+            <span class="review-origin">🇫🇷 France</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"As solo female traveller I was nervous, but Rossto made me feel completely safe and at ease the entire trip. Ranjan is like a trusted family member."</p>
+        <div class="review-author">
+          <div class="review-avatar">JK</div>
+          <div>
+            <span class="review-name">Jana K.</span>
+            <span class="review-origin">🇦🇺 Australia</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Took our honeymoon with Rossto. The surprise sunset dinner in the hills above Kandy was something out of a dream. We will never forget this trip."</p>
+        <div class="review-author">
+          <div class="review-avatar">MR</div>
+          <div>
+            <span class="review-name">Marco & Rosa</span>
+            <span class="review-origin">🇮🇹 Italy</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ranjan showed us places that weren't in any guidebook — a waterfall deep in the jungle, a family tea farm, a village ceremony. Pure authentic Sri Lanka."</p>
+        <div class="review-author">
+          <div class="review-avatar">PH</div>
+          <div>
+            <span class="review-name">Peter H.</span>
+            <span class="review-origin">🇳🇱 Netherlands</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Our family of five, including elderly parents and young kids — Ranjan managed everything with incredible patience and warmth. Absolute 10 out of 10."</p>
+        <div class="review-author">
+          <div class="review-avatar">RS</div>
+          <div>
+            <span class="review-name">Raj S.</span>
+            <span class="review-origin">🇸🇬 Singapore</span>
+          </div>
+        </div>
+      </div>
+      <!-- Duplicate for seamless scroll -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ranjan picked us up from the airport and was the warmest, most knowledgeable guide we could have asked for. He made Sri Lanka feel like home."</p>
+        <div class="review-author">
+          <div class="review-avatar">SM</div>
+          <div>
+            <span class="review-name">Sophie M.</span>
+            <span class="review-origin">🇬🇧 United Kingdom</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The Kandy to Ella train, Sigiriya at sunrise, whale watching in Mirissa — all perfectly arranged. Every detail was taken care of. Incredible value."</p>
+        <div class="review-author">
+          <div class="review-avatar">TD</div>
+          <div>
+            <span class="review-name">Thomas D.</span>
+            <span class="review-origin">🇩🇪 Germany</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"We had two weeks and Ranjan made every single day magical. The guesthouses he chose were perfect — clean, authentic, and with the most delicious breakfasts."</p>
+        <div class="review-author">
+          <div class="review-avatar">AL</div>
+          <div>
+            <span class="review-name">Amélie L.</span>
+            <span class="review-origin">🇫🇷 France</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"As solo female traveller I was nervous, but Rossto made me feel completely safe and at ease the entire trip. Ranjan is like a trusted family member."</p>
+        <div class="review-author">
+          <div class="review-avatar">JK</div>
+          <div>
+            <span class="review-name">Jana K.</span>
+            <span class="review-origin">🇦🇺 Australia</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Took our honeymoon with Rossto. The surprise sunset dinner in the hills above Kandy was something out of a dream. We will never forget this trip."</p>
+        <div class="review-author">
+          <div class="review-avatar">MR</div>
+          <div>
+            <span class="review-name">Marco & Rosa</span>
+            <span class="review-origin">🇮🇹 Italy</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ranjan showed us places that weren't in any guidebook — a waterfall deep in the jungle, a family tea farm, a village ceremony. Pure authentic Sri Lanka."</p>
+        <div class="review-author">
+          <div class="review-avatar">PH</div>
+          <div>
+            <span class="review-name">Peter H.</span>
+            <span class="review-origin">🇳🇱 Netherlands</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Our family of five, including elderly parents and young kids — Ranjan managed everything with incredible patience and warmth. Absolute 10 out of 10."</p>
+        <div class="review-author">
+          <div class="review-avatar">RS</div>
+          <div>
+            <span class="review-name">Raj S.</span>
+            <span class="review-origin">🇸🇬 Singapore</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MAP STRIP ─── -->
+<div id="map-section">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2026310.0!2d80.5!3d7.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2593cf65a1e9d%3A0xe13da4b400e2d38c!2sSri%20Lanka!5e0!3m2!1sen!2s!4v1700000000000"
+    allowfullscreen loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+  <div class="map-section-overlay glass">
+    <span>🗺️</span>
+    <span>Island-wide coverage · Kandy · Ella · Sigiriya · Galle · Nuwara Eliya · Mirissa & beyond</span>
+  </div>
+</div>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:10px;">
+      <span class="section-label reveal">Get In Touch</span>
+      <h2 class="section-title reveal">Ready to explore<br><em style="font-style:italic;color:var(--teal-mid)">Sri Lanka?</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="owner-card glass reveal">
+          <div class="owner-avatar">AR</div>
+          <div class="owner-info">
+            <h4>A. Ranjan</h4>
+            <p>Proprietor & Lead Guide · Rossto Tours</p>
+            <p style="font-size:0.78rem;color:var(--teal-mid);margin-top:4px;">Peradeniya, Kandy · Sri Lanka</p>
+          </div>
+        </div>
+
+        <div class="contact-card glass reveal reveal-delay-1">
+          <div class="contact-icon">📞</div>
+          <div class="contact-details">
+            <strong>Phone / WhatsApp</strong>
+            <a href="tel:+94772004795">077 200 4795</a>
+            <a href="tel:+94771343084" style="display:block">077 134 3084</a>
+          </div>
+        </div>
+
+        <div class="contact-card glass reveal reveal-delay-2">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-details">
+            <strong>Email</strong>
+            <a href="mailto:ranjandsha@gmail.com">ranjandsha@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-card glass reveal reveal-delay-3">
+          <div class="contact-icon">📍</div>
+          <div class="contact-details">
+            <strong>Address</strong>
+            <p>No. 114, Kurunduwatta Rd<br>Peradeniya, Kandy, Sri Lanka</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/94772004795?text=Hi%20Ranjan!%20I'd%20love%20to%20arrange%20a%20tour%20of%20Sri%20Lanka%20with%20Rossto." target="_blank" class="btn-primary reveal reveal-delay-4" style="text-align:center;display:block;">
+          💬 WhatsApp Ranjan Directly
+        </a>
+      </div>
+
+      <div class="contact-form glass reveal reveal-delay-2">
+        <div class="form-title">Plan Your Trip</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>WhatsApp / Phone</label>
+          <input type="tel" placeholder="+1 234 567 8900">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Arrival Date</label>
+            <input type="date">
+          </div>
+          <div class="form-group">
+            <label>Duration</label>
+            <select>
+              <option>3–5 days</option>
+              <option>1 week</option>
+              <option>2 weeks</option>
+              <option>3+ weeks</option>
+              <option>Day trip only</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Package Interest</label>
+          <select>
+            <option>Cultural Triangle (Kandy, Sigiriya, Dambulla)</option>
+            <option>Hill Country (Kandy, Ella, Nuwara Eliya)</option>
+            <option>South Coast (Galle, Mirissa, Tangalle)</option>
+            <option>Complete Island Tour</option>
+            <option>Airport Transfer Only</option>
+            <option>Custom – Tell me below</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea placeholder="Tell Ranjan about your dream Sri Lanka experience — group size, special interests, budget, anything!"></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit(this)">
+          ✈️ Send My Enquiry to Ranjan
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  
+  <p class="footer-tagline">Trust Your Dreams</p>
+  <div class="footer-links">
+    <a href="#why">Why Rossto</a>
+    <a href="#destinations">Destinations</a>
+    <a href="#experience">Services</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/94772004795" target="_blank">WhatsApp</a>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">
+    © 2025 Rossto Tours · Peradeniya, Kandy, Sri Lanka<br>
+    <a href="tel:+94772004795">077 200 4795</a> · <a href="tel:+94771343084">077 134 3084</a> · <a href="mailto:ranjandsha@gmail.com">ranjandsha@gmail.com</a>
+  </p>
+</footer>
+
+<!-- ─── WHATSAPP FLOAT ─── -->
+<a href="https://wa.me/94772004795?text=Hi%20Ranjan!%20I'd%20like%20to%20arrange%20a%20trip%20to%20Sri%20Lanka%20with%20Rossto." target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Open Google Maps for destinations
+  function openMap(query) {
+    window.open('https://www.google.com/maps/search/' + query, '_blank');
+  }
+
+  // Form submit
+  function handleSubmit(btn) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '⏳ Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '✅ Message Sent! Ranjan will reply shortly.';
+      btn.style.background = 'linear-gradient(135deg, #2d9a5a, #3dbe72)';
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    }, 1200);
+  }
+
+  // Smooth destination card entrance stagger
+  const destCards = document.querySelectorAll('.dest-card');
+  destCards.forEach((card, i) => {
+    card.style.transitionDelay = (i * 0.07) + 's';
+  });
+</script>
+</body>
+</html>
