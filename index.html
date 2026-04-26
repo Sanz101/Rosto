@@ -1608,7 +1608,7 @@
 
       <!-- Mirissa -->
       <div class="dest-card reveal reveal-delay-3" onclick="openMap('Mirissa+Beach+Sri+Lanka')">
-        <div class="dest-image-wrap"><img src="d6.png" class="dest-img blur-load" alt="Mirissa beach whale watching Sri Lanka" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="dest-image-wrap"><img src="images/d6.png" class="dest-img blur-load" alt="Mirissa beach whale watching Sri Lanka" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
         <div class="dest-overlay">
           <span class="dest-tag">Ocean & Wildlife</span>
           <div class="dest-name">Mirissa & Whale Watching</div>
@@ -1929,7 +1929,7 @@
         </a>
       </div>
 
-      <div class="contact-form glass reveal reveal-delay-2">
+      <form class="contact-form glass reveal reveal-delay-2" onsubmit="sendTripToWhatsApp(event)">
         <div class="form-title">Plan Your Trip</div>
         <div class="form-row">
           <div class="form-group">
@@ -1983,7 +1983,7 @@
         <button class="form-submit" onclick="handleSubmit(this)">
           ✈️ Send My Enquiry to Ranjan
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </section>
