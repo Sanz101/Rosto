@@ -1264,6 +1264,24 @@
     .hamburger { display: flex; }
     .nav-cta { display: none; }
     .form-row { grid-template-columns: 1fr; }
+    nav {
+  width: 54px;
+  height: 38px;
+  padding: 0;
+  top: 14px;
+  left: auto;
+  right: 18px;
+  transform: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger {
+  display: flex;
+  position: static;
+  margin: 0;
+  padding: 0;
+}
   }
 
   @media (max-width: 600px) {
@@ -1278,6 +1296,33 @@
     #map-section { height: 320px; }
     .map-section-overlay { padding: 10px 18px; }
     .map-section-overlay span { font-size: 0.72rem; }
+    @media (max-width: 900px) {
+  nav {
+    width: 46px;
+    height: 34px;
+    right: 16px;
+    top: 12px;
+    background: rgba(255, 241, 226, 0.35);
+    border: 1px solid rgba(29, 117, 139, 0.18);
+    box-shadow: 0 4px 18px rgba(29,117,139,0.08);
+  }
+
+  .hamburger span {
+    width: 20px;
+  }
+
+  body.menu-open nav {
+    display: none;
+  }
+
+  .mobile-close {
+    top: 16px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    font-size: 1.4rem;
+  }
+}
   }
 
   /* ─── WHATSAPP FLOAT ─── */
@@ -1337,6 +1382,42 @@
     margin-top: 4px;
     display: block;
   }
+
+
+  /* ─── DESTINATION IMAGE OPTIMIZATION + BLUR LOAD ─── */
+  .dest-image-wrap {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(29,117,139,0.16), rgba(255,241,226,0.42));
+  }
+
+  .dest-card.featured .dest-image-wrap {
+    min-height: 480px;
+  }
+
+  .dest-img.blur-load {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    display: block;
+    filter: blur(18px) brightness(0.92) contrast(1.05) saturate(1.05);
+    transform: scale(1.06);
+    transition: filter 0.7s ease, transform 0.7s ease;
+    will-change: filter, transform;
+  }
+
+  .dest-card.featured .dest-img.blur-load {
+    min-height: 480px;
+  }
+
+  .dest-img.blur-load.loaded {
+    filter: blur(0) brightness(0.92) contrast(1.05) saturate(1.05);
+    transform: scale(1);
+  }
+
 </style>
 </head>
 <body>
@@ -1377,7 +1458,7 @@
   </div>
   <div class="hero-content">
     
-    <img src="Logo.png" alt="Rossto" class="hero-logo-large">
+    <img src="Lofo.png" alt="Rossto" class="hero-logo-large">
     <h1 class="hero-tagline">
       Your <em>Dream Journey</em> Through<br>the Pearl of the Indian Ocean
     </h1>
@@ -1472,7 +1553,7 @@
     <div class="dest-grid">
       <!-- Featured: Kandy -->
       <div class="dest-card featured reveal" onclick="openMap('Kandy+Sri+Lanka')">
-        <div class="dest-kandy dest-placeholder">🏛️</div>
+        <div class="dest-image-wrap"><img src="d1.png" class="dest-img blur-load" alt="Kandy Sri Lanka Temple of the Tooth and hill country" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
         <div class="dest-overlay">
           <span class="dest-tag">⭐ Rossto Specialty</span>
           <div class="dest-name">Kandy & The Hill Country</div>
@@ -1483,7 +1564,7 @@
 
       <!-- Ella -->
       <div class="dest-card reveal reveal-delay-1" onclick="openMap('Ella+Sri+Lanka')">
-        <div class="dest-ella dest-placeholder">🌿</div>
+        <div class="dest-image-wrap"><img src="d2.png" class="dest-img blur-load" alt="Ella Nine Arches Bridge and tea country Sri Lanka" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
         <div class="dest-overlay">
           <span class="dest-tag">Nature & Scenery</span>
           <div class="dest-name">Ella & Nine Arches</div>
@@ -1494,7 +1575,7 @@
 
       <!-- Sigiriya -->
       <div class="dest-card reveal reveal-delay-2" onclick="openMap('Sigiriya+Sri+Lanka')">
-        <div class="dest-sigiriya dest-placeholder">🗿</div>
+        <div class="dest-image-wrap"><img src="d3.png" class="dest-img blur-load" alt="Sigiriya Rock Fortress Sri Lanka ancient wonder" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
         <div class="dest-overlay">
           <span class="dest-tag">Ancient Wonder</span>
           <div class="dest-name">Sigiriya Rock Fortress</div>
@@ -1505,7 +1586,7 @@
 
       <!-- Galle -->
       <div class="dest-card reveal reveal-delay-1" onclick="openMap('Galle+Fort+Sri+Lanka')">
-        <div class="dest-galle dest-placeholder">🏰</div>
+        <div class="dest-image-wrap"><img src="d4.png" class="dest-img blur-load" alt="Galle Fort Sri Lanka Dutch colonial coast" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
         <div class="dest-overlay">
           <span class="dest-tag">Colonial History</span>
           <div class="dest-name">Galle Fort</div>
@@ -1516,7 +1597,7 @@
 
       <!-- Nuwara Eliya -->
       <div class="dest-card reveal reveal-delay-2" onclick="openMap('Nuwara+Eliya+Sri+Lanka')">
-        <div class="dest-nuwara dest-placeholder">☕</div>
+        <div class="dest-image-wrap"><img src="d5.png" class="dest-img blur-load" alt="Nuwara Eliya tea plantations Sri Lanka" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
         <div class="dest-overlay">
           <span class="dest-tag">Tea Country</span>
           <div class="dest-name">Nuwara Eliya</div>
@@ -1527,7 +1608,7 @@
 
       <!-- Mirissa -->
       <div class="dest-card reveal reveal-delay-3" onclick="openMap('Mirissa+Beach+Sri+Lanka')">
-        <div class="dest-beach dest-placeholder">🐳</div>
+        <div class="dest-image-wrap"><img src="d6.png" class="dest-img blur-load" alt="Mirissa beach whale watching Sri Lanka" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
         <div class="dest-overlay">
           <span class="dest-tag">Ocean & Wildlife</span>
           <div class="dest-name">Mirissa & Whale Watching</div>
@@ -1954,11 +2035,10 @@
   }, { passive: true });
 
   // Mobile menu
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
-  }
-
+ function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+}
   // Open Google Maps for destinations
   function openMap(query) {
     window.open('https://www.google.com/maps/search/' + query, '_blank');
@@ -1985,6 +2065,13 @@
   destCards.forEach((card, i) => {
     card.style.transitionDelay = (i * 0.07) + 's';
   });
+
+
+  // Remove blur instantly for cached destination images
+  document.querySelectorAll('.dest-img.blur-load').forEach((img) => {
+    if (img.complete) img.classList.add('loaded');
+  });
+
 </script>
 </body>
 </html>
